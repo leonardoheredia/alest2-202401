@@ -1,5 +1,7 @@
 package aula03_analise_algoritmos_ordenacao;
 
+import utils.ArrayUtils;
+
 public class BubbleSort {
     private int operacoes;
     private long tempoInicio;
@@ -27,10 +29,11 @@ public class BubbleSort {
                     operacoes++;
                     //System.out.printf("Trocou %d pelo %d %n", temp, arrayParaOrdenar[j-1]);
                 }
-                operacoes++;
             }
+            operacoes++;
         }
         tempoFim = System.nanoTime();
     }
+
 
 }
