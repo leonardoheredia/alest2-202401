@@ -1,45 +1,57 @@
-package aula03_analise_algoritmos_ordenacao;
+package aula04_analise_algoritmos_ordenacao;
 
+import aula03_analise_algoritmos_ordenacao.BubbleSort;
+import aula03_analise_algoritmos_ordenacao.InsertionSort;
+import aula03_analise_algoritmos_ordenacao.MergeSort;
+import aula03_analise_algoritmos_ordenacao.QuickSort;
 import utils.ArrayUtils;
 
-public class AnaliseAlgoritmos {
+import java.util.Random;
+
+public class AnaliseAlgoritmos2 {
+    // Método para embaralhar o array
+    private static void shuffleArray(int[] array) {
+        Random rnd = new Random();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            int temp = array[index];
+            array[index] = array[i];
+            array[i] = temp;
+        }
+    }
     public static void main(String[] args) {
 
         int[] meuArray;
-        int[] meuArrayBubble;
-        int[] meuArrayInsertion;
         int[] meuArrayMerge;
         int[] meuArrayQuick;
-        System.out.println("n;bubble;insert;merge;quick");
-        for (int n = 10; n < 10_000; n+=50) {
+        System.out.println("n;merge;quick");
+        for (int n = 10; n < 100; n++) {
             meuArray = new int[n];
-            meuArrayBubble = new int[n];
-            meuArrayInsertion = new int[n];
             meuArrayMerge = new int[n];
             meuArrayQuick = new int[n];
-            ArrayUtils.preencherArrayComValoresInteirosAleatorios(meuArray, 1_000_000, true);
-            ArrayUtils.clonarArray(meuArray, meuArrayBubble);
-            ArrayUtils.clonarArray(meuArray, meuArrayInsertion);
+            ArrayUtils.preencherArrayComValoresInteirosAleatorios(meuArray, 500, true);
             ArrayUtils.clonarArray(meuArray, meuArrayMerge);
             ArrayUtils.clonarArray(meuArray, meuArrayQuick);
 
-            BubbleSort bs = new BubbleSort();
-            InsertionSort is = new InsertionSort();
             MergeSort ms = new MergeSort();
             QuickSort qs = new QuickSort();
 
-            bs.ordenar(meuArrayBubble);
-            is.ordenar(meuArrayInsertion);
             ms.ordenar(meuArrayMerge);
-            qs.ordenar(meuArrayQuick);
+            ArrayUtils.clonarArray(meuArrayMerge, meuArrayQuick);
+            //shuffleArray(meuArrayQuick);
 
-            System.out.println(n + ";" +  bs.getOperacoes()
+            qs.ordenar(meuArrayQuick);
+            System.out.println(n
+                    + ";" + ms.getOperacoes()
+                    + ";" + qs.getOperacoes()
+            );
+            /*System.out.println(n + ";" +  bs.getOperacoes()
                                  + ";" + is.getOperacoes()
                                  + ";" + ms.getOperacoes()
                                  + ";" + qs.getOperacoes()
             );
 
-
+             */
         }
 
     }
