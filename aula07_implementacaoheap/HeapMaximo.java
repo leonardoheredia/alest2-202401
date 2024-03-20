@@ -1,5 +1,7 @@
 package aula07_implementacaoheap;
 
+import utils.ArrayUtils;
+
 public class HeapMaximo {
     int[] chaves;
     int CAPACIDADE;
@@ -7,6 +9,14 @@ public class HeapMaximo {
     public HeapMaximo(int capacidade) {
         this.CAPACIDADE = capacidade;
         chaves = new int[CAPACIDADE];
+    }
+    public HeapMaximo(int[] chaves) {
+        this.chaves = chaves;
+        CAPACIDADE = chaves.length;
+        tamanho = chaves.length;
+        for(int i = (tamanho-1)/2; i>=0; i--) {
+            afundar(i);
+        }
     }
     public void inserir(int chave) {
         chaves[tamanho] = chave;
@@ -34,12 +44,8 @@ public class HeapMaximo {
         int maior = posicao;
         int fe = 2*posicao + 1;
         int fd = 2*posicao + 2;
-        if(fe < tamanho && chaves[fe] > chaves[maior]) {
-            maior = fe;
-        }
-        if(fd < tamanho && chaves[fd] > chaves[maior]){
-            maior = fd;
-        }
+        if(fe < tamanho && chaves[fe] > chaves[maior]) maior = fe;
+        if(fd < tamanho && chaves[fd] > chaves[maior]) maior = fd;
         if(maior!=posicao) {
             int temp = chaves[posicao];
             chaves[posicao] = chaves[maior];
@@ -57,5 +63,9 @@ public class HeapMaximo {
         h.inserir(23);
         h.inserir(90);
         System.out.println(h.extrairMaximo());
+
+        int[] a = {30, 40, 23, 70, 51, 18};
+        HeapMaximo h2 = new HeapMaximo(a);
+        ArrayUtils.imprimir(a);
     }
 }
