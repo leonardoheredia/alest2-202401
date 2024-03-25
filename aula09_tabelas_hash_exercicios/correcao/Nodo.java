@@ -1,4 +1,4 @@
-package aula09_tabelas_hash_exercicios;
+package aula09_tabelas_hash_exercicios.correcao;
 
 public class Nodo {
     private int chave;
@@ -14,12 +14,15 @@ public class Nodo {
     public void setProximo(Nodo proximo) {
         this.proximo = proximo;
     }
+
     public int getChave() {
         return chave;
     }
+
     public String getValor() {
         return valor;
     }
+
     public void setValor(String valor) {
         this.valor = valor;
     }
