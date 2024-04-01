@@ -16,6 +16,7 @@ public class TabelaSimbolosEncadeada<Chave, Valor> {
         Nodo aux = inicio;
         while(aux!=null) {
             if(aux.chave.equals(chave)) return aux.valor;
+            aux = aux.proximo;
         }
         return null;
     }
@@ -31,7 +32,10 @@ public class TabelaSimbolosEncadeada<Chave, Valor> {
         //inserindo um novo
         Nodo novo = new Nodo(chave, valor);
         if(inicio == null) inicio = novo;
-        else novo.proximo = inicio;
+        else {
+            novo.proximo = inicio;
+            inicio = novo;
+        }
         tamanho++;
     }
 
