@@ -1,5 +1,7 @@
 package aula11_tabelas_simbolos_tries;
 
+import ___aula11_tabelas_simbolos_tries.TabelaSimbolos;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -26,4 +28,5 @@ public class ContadorDePalavras {
         }
         System.out.println(tabelaPalavras);
     }
+
 }
