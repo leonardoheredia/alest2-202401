@@ -1,4 +1,4 @@
-package aula07_implementacaoheap;
+package aula06_heap_heapsort;
 
 import utils.ArrayUtils;
 
@@ -53,7 +53,9 @@ public class HeapMaximo {
             nadarSubindo(pai);
         }
     }
-
+    public int[] getChaves() {
+        return chaves;
+    }
     public static void main(String[] args) {
         HeapMaximo h = new HeapMaximo(50);
         h.inserir(54);
