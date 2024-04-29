@@ -5,6 +5,10 @@ public class App {
         Grafo g = new Grafo(4);
         g.adicionarAresta(0, 1);
         g.adicionarAresta(0, 2);
+        g.adicionarAresta(0,3);
+        g.adicionarAresta(1,3);
+        g.adicionarAresta(2,3 );
         System.out.println(g.toDot());
+        System.out.println(g.grau(0));
     }
 }

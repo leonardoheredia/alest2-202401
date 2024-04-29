@@ -28,10 +28,18 @@ public class Grafo {
         return sb.toString();
     }
     public int grau(int vertice) {
-        return  -1;
+        int c = 0;
+        for (int w = 0; w < nVertices; w++) {
+            if(matrizAdjacencia[vertice][w]) c++;
+        }
+        return c;
     }
     public void removerAresta(int v, int w) {
-
+        if(matrizAdjacencia[v][w]) {
+            matrizAdjacencia[v][w] = false;
+            matrizAdjacencia[w][v] = false;
+            nArestas--;
+        }
     }
 
 
