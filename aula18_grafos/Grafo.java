@@ -55,6 +55,25 @@ public class Grafo {
     public void adicionarVertices(int quantidade) {
         //IMPLEMENTAR
     }
+    public ArrayList<Integer> caminharProfundidade(int origem) {
+        //retorna uma lista com os vertices conectados caminhando em profundidade
+        ArrayList<Integer> caminho = new ArrayList<>();
+        boolean[] visitados = new boolean[nVertices];
+        caminharEmProfundidadeRecursivo(origem, visitados, caminho);
+        return caminho;
+    }
+    private void caminharEmProfundidadeRecursivo(int origem,
+                                                 boolean[] visitados,
+                                                 ArrayList<Integer> caminho) {
+        visitados[origem] = true;
+        caminho.add(origem);
+        ArrayList<Integer> verticesAdjacentes = this.adjacentes(origem);
+        for (int w:verticesAdjacentes) {
+            if(!visitados[w]) caminharEmProfundidadeRecursivo(w, visitados, caminho);
+        }
+
+    }
+
 
 
 
