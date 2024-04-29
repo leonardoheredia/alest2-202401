@@ -1,5 +1,7 @@
 package aula18_grafos;
 
+import java.util.ArrayList;
+
 public class Grafo {
     private int nVertices;
     private int nArestas;
@@ -40,6 +42,18 @@ public class Grafo {
             matrizAdjacencia[w][v] = false;
             nArestas--;
         }
+    }
+    public ArrayList<Integer> adjacentes(int v) {
+        ArrayList<Integer> adj = new ArrayList<>();
+        for (int w = 0; w < nVertices; w++) {
+            if(matrizAdjacencia[v][w]) {
+                adj.add(w);
+            }
+        }
+        return adj;
+    }
+    public void adicionarVertices(int quantidade) {
+        //IMPLEMENTAR
     }
 
 

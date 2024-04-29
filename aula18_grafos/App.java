@@ -10,5 +10,7 @@ public class App {
         g.adicionarAresta(2,3 );
         System.out.println(g.toDot());
         System.out.println(g.grau(0));
+        System.out.println("Adjacentes do 0");
+        System.out.println(g.adjacentes(0));
     }
 }
