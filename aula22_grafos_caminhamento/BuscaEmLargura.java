@@ -11,17 +11,48 @@ public class BuscaEmLargura {
     private GrafoListaAdjacencia grafo;
     private int origem;
     public BuscaEmLargura(GrafoListaAdjacencia grafo, int origem) {
-       //implementar
+        this.grafo = grafo;
+        this.origem = origem;
+        visitados = new boolean[this.grafo.getNumVertices()];
+        anteriores = new int[this.grafo.getNumVertices()];
+        distancia = new int[this.grafo.getNumVertices()];
+
+        buscarEmLargura(origem);
     }
     private void buscarEmLargura(int origem) {
-        //implementar
+        Queue<Integer> fila = new LinkedList<>();
+        fila.add(origem);
+        visitados[origem] = true;
+
+        while(!fila.isEmpty()) {
+            int v = fila.poll();
+            for(int w:grafo.adjacentes(v)) {
+                if(!visitados[w]) {
+                    fila.add(w);
+                    visitados[w] = true;
+                    anteriores[w] = v;
+                    distancia[w] = distancia[v] + 1;
+                }
+            }
+        }
     }
     public ArrayList<Integer> caminhoPara(int destino) {
-        return null;
+        ArrayList<Integer> caminho = new ArrayList<>();
+        while(destino!=origem) {
+            caminho.add(0, destino);
+            destino = anteriores[destino];
+        }
+        caminho.add(0, origem);
+        return caminho;
     }
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        //implementar
+        sb.append(System.lineSeparator()).append("Vertice  | Visitado  | Anterior | Distancia");
+        sb.append(System.lineSeparator()).append("---------|-----------|--------- |----------");
+        for (int v = 0; v < grafo.getNumVertices(); v++) {
+            sb.append(System.lineSeparator()).append(v).append("|").append(visitados[v]).append("|").append(anteriores[v]).append("|").append(distancia[v]);
+        }
         return sb.toString();
     }
 }
+

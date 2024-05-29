@@ -7,19 +7,40 @@ public class BuscaEmProfundidade {
     private int[] anteriores;
     private GrafoListaAdjacencia grafo;
     private int origem;
-    public BuscaEmProfundidade(GrafoListaAdjacencia g, int origem) {
-        //implementar 2705
+    public BuscaEmProfundidade(GrafoListaAdjacencia grafo, int origem) {
+        this.grafo = grafo;
+        this.origem = origem;
+        visitados = new boolean[this.grafo.getNumVertices()];
+        anteriores = new int[this.grafo.getNumVertices()];
+
+        buscarEmProfundidadeRecursivo(origem);
     }
     private void buscarEmProfundidadeRecursivo(int v) {
-        //implementar 2705
+        visitados[v] = true;
+        for(int w: grafo.adjacentes(v)) {
+            if(!visitados[w]) {
+                visitados[w] = true;
+                anteriores[w] = v;
+                buscarEmProfundidadeRecursivo(w);
+            }
+        }
     }
     public ArrayList<Integer> caminhoPara(int destino) {
-        //implementar 2705
-        return null;
+        ArrayList<Integer> caminho = new ArrayList<>();
+        while(destino!=origem) {
+            caminho.add(0, destino);
+            destino = anteriores[destino];
+        }
+        caminho.add(0, origem);
+        return caminho;
     }
     public String toString() {
-        //implementar 2705
         StringBuilder sb = new StringBuilder();
+        sb.append(System.lineSeparator()).append("Vertice  | Visitado  | Anterior");
+        sb.append(System.lineSeparator()).append("---------|-----------|---------");
+        for (int v = 0; v < grafo.getNumVertices(); v++) {
+            sb.append(System.lineSeparator()).append(v).append("|").append(visitados[v]).append("|").append(anteriores[v]);
+        }
         return sb.toString();
     }
 }
